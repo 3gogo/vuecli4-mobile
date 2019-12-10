@@ -1,0 +1,160 @@
+
+@import "./var.less";
+@import "./reset.less";
+
+@import "./animate.less";
+
+html{
+    border-width: 0.5px;/*no*/
+
+    &.hairline{
+        border-width: 0.5px;/*no*/
+    }
+}
+
+body{
+    user-select: none;
+}
+
+// .iconfont{
+//     font-family:"iconfont" !important;
+//     .font-dpr(12px);
+//     font-style:normal;
+//     -webkit-font-smoothing: antialiased;
+//     -webkit-text-stroke-width: 0.2px;
+//     -moz-osx-font-smoothing: grayscale;
+// }
+// .mall-iconfont{
+//     font-family:"mall" !important;
+//     .font-dpr(12px);
+//     font-style:normal;
+//     -webkit-font-smoothing: antialiased;
+//     -webkit-text-stroke-width: 0.2px;
+//     -moz-osx-font-smoothing: grayscale;
+// }
+// .price{
+//     &:before{
+//         &:extend(.mall-iconfont);
+//         content:"\e605";
+//     }
+// }
+// .price-bolder{
+//     &:before{
+//         &:extend(.mall-iconfont);
+//         content:"\e622";
+//     }
+// }
+// .price-lighter{
+//     &:before{
+//         &:extend(.mall-iconfont);
+//         content:"\e621";
+//     }
+// }
+.del{
+    position: relative;
+    color: #999 !important;
+    &:after{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;/*px*/
+        background-color: #999;
+        transform: translateY(-50%) scaleY(.5);
+    }
+}
+// 页面基础布局
+.pages{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #f2f2f2;
+}
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // overflow: hidden;
+    overflow:hidden;
+    width: 100%;
+    height: 100%;
+    background: #f2f2f2;
+    display: flex;
+    flex-direction:column;
+}
+
+.scroll-view{
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    background: #f2f2f2;
+    flex:1;
+    transform: translateZ(0);
+    &::-webkit-scrollbar {display:none}
+    &.scroll-penetrate {
+        -webkit-overflow-scrolling: auto !important;
+    }
+}
+
+.xscroll-view{
+    position: relative;
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+        opacity: 0;
+    }
+
+    &.no-scroll {
+        overflow-x: hidden;
+        .xscroll-content {
+            width: 100%;
+        }
+    }
+    .xscroll-content{
+        position: absolute;
+        left: 0;
+        height: 100%;
+        /*bottom: -11px;*/
+        /*padding-bottom: 11px;*/
+        overflow: hidden;
+    }
+}
+
+.top-fixed{
+}
+.bottom-fixed{
+
+}
+.clearfix {
+    &::after, &::before {
+        content: '';
+        display: table-cell;
+        height: 0;
+        visibility: hidden;
+        clear: both;
+    }
+}
+
+.ping-fang-r {
+    font-family: 'PingFangSC-Regular';
+}
+
+.ping-fang-m {
+    font-family: 'PingFangSC-Medium';
+}
+
+// 头部样式

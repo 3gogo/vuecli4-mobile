@@ -1,0 +1,28 @@
+@import "./var/color.less";
+
+@import "./fnc/fnc.less";
+
+.textOverflow(){
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.textOverflowByRow(@row){
+    -webkit-line-clamp: @row;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @row;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+}
+
+// 倒计时等宽数字样式
+.equalNumberStyle(){
+    font-family: 'Helvetica Neue', helvetica;
+}

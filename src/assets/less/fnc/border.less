@@ -1,0 +1,210 @@
+@border_color: #e0e0e0;
+
+.border(@border_option, @border_radius: 0) {
+    &:before {
+        border: @border_option;
+    }
+    .border-fix(@border_radius);
+}
+
+.border-top(@border_option) {
+    &:before {
+        border-top: @border_option;
+    }
+    .border-fix(0);
+}
+
+.border-right(@border_option) {
+    &:before {
+        border-right: @border_option;
+    }
+    .border-fix(0);
+}
+
+.border-bottom(@border_option) {
+    &:before {
+        border-bottom: @border_option;
+    }
+    .border-fix(0);
+}
+
+.border-left(@border_option) {
+    &:before {
+        border-left: @border_option;
+    }
+    .border-fix(0);
+}
+
+.border-fix(@border_radius) {
+    position: relative;
+    /*box-sizing: border-box;*/
+    border-radius: @border_radius;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    z-index: 10;
+
+    &:before {
+        content: " ";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: 0 0;
+        transform: scale(.5);
+        border-radius: @border_radius*2;
+        /*box-sizing: border-box;*/
+        pointer-events: none;
+        z-index: 11;
+
+        [data-dpr="1"] &{
+            border-width: 1px;/*no*/
+        }
+
+        [data-dpr="2"] &{
+            border-width: 2px;/*no*/
+        }
+
+        [data-dpr="3"] &{
+            border-width: 3px;/*no*/
+        }
+    }
+}
+
+.border-fix-bottom(@border_option, @border_radius: 0) {
+    position: relative;
+    box-sizing: border-box;
+    border-radius: @border_radius;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    &:after {
+        content: " ";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: @border_option;/*no*/
+        transform: scale(.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: @border_radius*2;
+        pointer-events: none;
+        z-index: 1
+    }
+}
+
+
+/**
+ * 细边框
+ * 
+ * 如果支持 0.5px border (<html> 有.hairline)
+ * 则 border-width 使用 1px (因为 0.5px 实在太细)
+ * 否则在 :after 放大2倍再 scale(0.5)
+ * 
+ * @param  {px} @width:  1px                border-width
+ * @param  {String} @style:  solid          border-style
+ * @param  {color} @color:  @border_color   border-color
+ * @param  {px} @radius: 0                  border-radius
+ */
+.border-top-hairline(@width: 1px, @style: solid, @color: @border_color, @radius: 0){
+    .hairline &{
+        border-top: @width @style @color;
+    }
+
+    html:not(.hairline) &:after{
+        border-top: @width @style @color;/*no*/
+    }
+
+    .border-1px(@width, @style, @color);
+}
+
+.border-bottom-hairline(@width: 1px, @style: solid, @color: @border_color, @radius: 0){
+    .hairline &{
+        border-bottom: @width @style @color;
+    }
+
+    html:not(.hairline) &:after{
+        border-bottom: @width @style @color;/*no*/
+    }
+
+    .border-1px(@width, @style, @color);
+}
+
+.border-left-hairline(@width: 1px, @style: solid, @color: @border_color, @radius: 0){
+    .hairline &{
+        border-left: @width @style @color;
+    }
+
+    html:not(.hairline) &:after{
+        border-left: @width @style @color;/*no*/
+    }
+
+    .border-1px(@width, @style, @color);
+}
+
+.border-right-hairline(@width: 1px, @style: solid, @color: @border_color, @radius: 0){
+    .hairline &{
+        border-right: @width @style @color;
+    }
+
+    html:not(.hairline) &:after{
+        border-right: @width @style @color;/*no*/
+    }
+
+    .border-1px(@width, @style, @color);
+}
+
+.border-hairline(@width: 1px, @style: solid, @color: @border_color, @radius: 0){
+    .hairline &{
+        border: @width @style @color;
+    }
+
+    html:not(.hairline) &:after{
+        border: @width @style @color;/*no*/
+    }
+
+    .border-1px(@width, @style, @color, @radius);
+}
+
+.border-1px(@width: 1px, @style: solid, @color: @border_color, @radius: 0){
+    
+    border-radius: @radius;
+
+    .hairline &.tag{ // 因为 0.5px 在 2x/3x 屏表现太糟糕
+        border-width: @width;/*no*/
+    }
+
+    html:not(.hairline) &{
+        position: relative;
+        box-sizing: border-box;
+
+        &:after{
+            content: " ";
+            
+            border-radius: @radius*2;
+
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            width: 200%;
+            height: 200%;
+
+            transform-origin: left top;
+            transform: scale(0.5);
+
+            box-sizing: border-box;
+
+            pointer-events: none;
+        }
+    }
+}
+
+.border-none-hairline{
+    .hairline &{
+        border: none;
+    }
+
+    html:not(.hairline) &:after{
+        border: none;
+    }
+}

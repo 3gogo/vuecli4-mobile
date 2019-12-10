@@ -1,0 +1,31 @@
+/**
+ * tag函数 为Android tag添加padding
+ * 默认参数为font-size:18px height:26px的取值
+ * 
+ * @param  {px} @paddingX:        0             padding-left padding-right
+ * @param  {px} @paddingY:        0             padding-top padding-bottom 一般是 (height-fontSize)/2
+ * @param  {px} @extraPaddingTop: 2px           extra padding-top for Android (a magical number)
+ * @param  {Boolean} @dpr:        false         是否按照dpr缩放 目前就小标签用到
+ */
+._tag(@paddingX: 5px, @paddingY: 3px, @extraPaddingTop: 3px, @dpr: false){
+    line-height: 1; // 重置tag高度
+
+    padding-left: @paddingX;
+    padding-right: @paddingX;
+    padding-top: @paddingY;
+    padding-bottom: @paddingY;
+
+    [data-dpr="2"] & when(@dpr = true) {
+        padding-top: @paddingY*1.5;
+        padding-bottom: @paddingY*1.5;
+    }
+
+    [data-dpr="3"] & when(@dpr = true) {
+        padding-top: @paddingY*1.5;
+        padding-bottom: @paddingY*1.5;
+    }
+
+    .android &{
+        padding-top: @paddingY + @extraPaddingTop;
+    }
+}
